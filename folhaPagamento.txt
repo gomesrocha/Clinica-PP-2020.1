@@ -1,0 +1,3 @@
+{"salarioBruto":3500.0,"inss":385.0,"irrf":112.44999999999999,"salarioLiquido":3002.55}
+{"salarioBruto":5331.25,"inss":586.4375,"irrf":435.46343750000017,"salarioLiquido":4309.3490624999995}
+{"salarioBruto":5312.55,"inss":584.3805,"irrf":430.88661250000007,"salarioLiquido":4297.2828875000005}

@@ -46,6 +46,8 @@ public class Principal {
   
     FuncionarioDB fdb = new FuncionarioDB();
     fdb.todosOsDados();
+    fdb.cadastrarFuncionario();
+    fdb.todosOsDados();
     }
 
 }

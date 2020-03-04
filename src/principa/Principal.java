@@ -5,6 +5,7 @@
  */
 package principa;
 
+import Model.FuncionarioDB;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,6 +16,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.sql.Connection;
+
 
 /**
  *
@@ -26,6 +29,7 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        /*
         try {
             Path arquivo = Paths.get("arquivo.txt");
             BufferedWriter bw = null;
@@ -38,7 +42,10 @@ public class Principal {
         } catch (IOException ex) {
             System.out.println("Deu merda no arquivo");
         }
-
+*/
+  
+    FuncionarioDB fdb = new FuncionarioDB();
+    fdb.todosOsDados();
     }
 
 }

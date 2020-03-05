@@ -5,6 +5,7 @@
  */
 package principa;
 
+import Model.FuncionarioDB;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -33,6 +34,10 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        FuncionarioDB fdb = new FuncionarioDB();
+        fdb.cadastrarFuncionario("Thiago", "Thiago@gmail.com", "123456789");
+        fdb.listarTodosOsFuncionarios();
+        fdb.buscarFuncionarioPorNome("Thiago");
         /*
         try {
             Path arquivo = Paths.get("arquivo.txt");
@@ -46,7 +51,7 @@ public class Principal {
         } catch (IOException ex) {
             System.out.println("Deu merda no arquivo");
         }
-*/
+
         Connection con = null;
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -74,7 +79,7 @@ public class Principal {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-       
+       */
   
   
     }

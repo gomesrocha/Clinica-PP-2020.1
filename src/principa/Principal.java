@@ -6,21 +6,7 @@
 package principa;
 
 import Model.FuncionarioDB;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 
@@ -34,11 +20,12 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        FuncionarioDB fdb = new FuncionarioDB();
+        
+        /*FuncionarioDB fdb = new FuncionarioDB();
         fdb.cadastrarFuncionario("Thiago", "Thiago@gmail.com", "123456789");
         fdb.listarTodosOsFuncionarios();
         fdb.buscarFuncionarioPorNome("Thiago");
-        /*
+        
         try {
             Path arquivo = Paths.get("arquivo.txt");
             BufferedWriter bw = null;

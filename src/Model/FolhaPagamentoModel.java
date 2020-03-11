@@ -18,6 +18,18 @@ public class FolhaPagamentoModel {
     public FolhaPagamentoModel(double salarioBruto) {
         this.salarioBruto = salarioBruto;
     }
+
+    public FolhaPagamentoModel(double salarioBruto, double inss, double irrf, double salarioLiquido) {
+        this.salarioBruto = salarioBruto;
+        this.inss = inss;
+        this.irrf = irrf;
+        this.salarioLiquido = salarioLiquido;
+    }
+
+    public double getSalarioBruto() {
+        return salarioBruto;
+    }
+    
     public double getInss(){
         if(salarioBruto < 1751.82){
             this.inss = salarioBruto * 0.08;

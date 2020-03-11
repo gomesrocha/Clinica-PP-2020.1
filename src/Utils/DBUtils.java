@@ -8,9 +8,6 @@ package Utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import principa.Principal;
 
 /**
  *
@@ -22,7 +19,7 @@ public class DBUtils {
         Connection con = null;
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/clinicadb",
+            con = DriverManager.getConnection("jdbc:derby://localhost:1527/ClinicaPP",
                 "root", "unit2020");
         System.out.println("Conexão efetuada com sucesso");
         } catch (ClassNotFoundException ex) {

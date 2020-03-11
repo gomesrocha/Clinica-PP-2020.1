@@ -5,6 +5,7 @@
  */
 package Control;
 
+import Model.FolhaPagamentoDB;
 import Model.FolhaPagamentoModel;
 import Utils.BancoDeDados;
 
@@ -24,7 +25,9 @@ public class FolhaPagamentoControl {
             return fpm;
     }
     public void salvar(){
-
+        FolhaPagamentoDB fpdb = new FolhaPagamentoDB();
+        fpdb.cadastrarFolha(fpm);
+        
      
     }
     

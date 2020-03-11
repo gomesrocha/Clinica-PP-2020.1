@@ -6,6 +6,7 @@
 package View;
 
 import Control.FolhaPagamentoControl;
+import Model.FolhaPagamentoDB;
 import Model.FolhaPagamentoModel;
 import Model.FuncionarioDB;
 
@@ -208,10 +209,11 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
         lblInss.setText(String.valueOf(fpm.getInss()));
         lblIrrf.setText(String.valueOf(fpm.getIrrf()));
         lblSalarioLiquido.setText(String.valueOf(fpm.getSalarioLiquido()));
-        fpc.salvar();
-        FuncionarioDB fdb = new FuncionarioDB();
-        fdb.cadastrarFuncionario(txtNome.getText(), "emailtest", "teste");
-        fdb.listarTodosOsFuncionarios();
+        FolhaPagamentoDB fpdb = new FolhaPagamentoDB();
+        fpdb.cadastrarFolha(fpm);
+        //FuncionarioDB fdb = new FuncionarioDB();
+        //fdb.cadastrarFuncionario(txtNome.getText(), "emailtest", "teste");
+        //fdb.listarTodosOsFuncionarios();
         
         
     }//GEN-LAST:event_jButton1ActionPerformed

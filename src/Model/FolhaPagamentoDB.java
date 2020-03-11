@@ -40,9 +40,10 @@ public class FolhaPagamentoDB {
             String sql = "select * from FOLHA";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                fpm = new FolhaPagamentoModel(rs.getDouble(1),
-                        rs.getDouble(2), rs.getDouble(3), rs.getDouble(4));
+                fpm = new FolhaPagamentoModel(rs.getDouble(2),
+                        rs.getDouble(3), rs.getDouble(4), rs.getDouble(5));
                 fp.add(fpm);
+                System.out.println(rs.getDouble(2));
             }
 
         } catch (SQLException ex) {

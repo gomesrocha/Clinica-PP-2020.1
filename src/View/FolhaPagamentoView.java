@@ -9,6 +9,8 @@ import Control.FolhaPagamentoControl;
 import Model.FolhaPagamentoDB;
 import Model.FolhaPagamentoModel;
 import Model.FuncionarioDB;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,6 +52,7 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         txtSalario = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
+        btListar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +106,13 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
             }
         });
 
+        btListar.setText("Listar");
+        btListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btListarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -140,12 +150,15 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
                                 .addComponent(lblSalarioLiquido))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(287, 287, 287)
-                                .addComponent(jLabel8))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(300, 300, 300)
-                                .addComponent(jButton1)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jLabel8)))
+                        .addGap(0, 333, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(jButton1)
+                .addGap(140, 140, 140)
+                .addComponent(btListar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +192,9 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btListar))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -218,6 +233,27 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
+        
+        FolhaPagamentoDB fpdb = new FolhaPagamentoDB();
+        ArrayList<FolhaPagamentoModel> fpl = fpdb.listarFolhaPagamento();
+
+        for(FolhaPagamentoModel fpm: fpl){
+            JOptionPane.showMessageDialog(rootPane, 
+                    "Folha de pagamento\n"+ 
+                            "________________________\n"+ 
+                            "Salário: " + String.valueOf(fpm.getSalarioBruto())
+                            +"\n________________________\n"
+                            +"Descontos \n"
+                            +"\n________________________\n"
+                            +"\nINSS: " + String.valueOf(fpm.getInss())
+                            +"\nIRRF: " + String.valueOf(fpm.getIrrf())
+                            +"\n________________________\n"
+                            +"\nSalario Liquido: " +String.valueOf(fpm.getSalarioLiquido())
+                    );
+        }
+    }//GEN-LAST:event_btListarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,6 +290,7 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btListar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

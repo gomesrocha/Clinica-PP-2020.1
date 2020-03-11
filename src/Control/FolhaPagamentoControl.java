@@ -7,7 +7,6 @@ package Control;
 
 import Model.FolhaPagamentoModel;
 import Utils.BancoDeDados;
-import com.google.gson.Gson;
 
 /**
  * Aula Projeto de Programação - Unit
@@ -25,9 +24,8 @@ public class FolhaPagamentoControl {
             return fpm;
     }
     public void salvar(){
-        Gson gson = new Gson();
-        String json = gson.toJson(fpm);
-        BancoDeDados.escreverArquivo(json, "folhaPagamento.txt");
+
+     
     }
     
 }

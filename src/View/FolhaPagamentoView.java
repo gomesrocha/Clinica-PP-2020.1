@@ -11,6 +11,7 @@ import Model.FolhaPagamentoModel;
 import Model.FuncionarioDB;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,8 +22,40 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
     /**
      * Creates new form FolhaPagamentoView
      */
+    public void listatudo(){
+        FolhaPagamentoDB fpdb = new FolhaPagamentoDB();
+        ArrayList<FolhaPagamentoModel> fpl = fpdb.listarFolhaPagamento();
+        int i = 0;
+       DefaultTableModel model = (DefaultTableModel) jtblFolha.getModel();
+       model.setNumRows(0);
+        for(FolhaPagamentoModel fpm: fpl){
+            /*
+            JOptionPane.showMessageDialog(rootPane, 
+                    "Folha de pagamento\n"+ 
+                            "________________________\n"+ 
+                            "Salário: " + String.valueOf(fpm.getSalarioBruto())
+                            +"\n________________________\n"
+                            +"Descontos \n"
+                            +"\n________________________\n"
+                            +"\nINSS: " + String.valueOf(fpm.getInss())
+                            +"\nIRRF: " + String.valueOf(fpm.getIrrf())
+                            +"\n________________________\n"
+                            +"\nSalario Liquido: " +String.valueOf(fpm.getSalarioLiquido())
+                    
+                    );
+           */
+            model.addRow(new Object[]{
+            String.valueOf(fpm.getSalarioBruto()),
+                    String.valueOf(fpm.getInss()),
+                    String.valueOf(fpm.getIrrf()),
+                    String.valueOf(fpm.getSalarioLiquido())
+            });
+            
+        }
+    }
     public FolhaPagamentoView() {
         initComponents();
+        listatudo();
     }
 
     /**
@@ -53,6 +86,8 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
         txtSalario = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         btListar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtblFolha = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,6 +148,19 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
             }
         });
 
+        jtblFolha.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Salario", "INSS", "IRRF", "Salário Liquido"
+            }
+        ));
+        jScrollPane1.setViewportView(jtblFolha);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -151,14 +199,15 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(287, 287, 287)
                                 .addComponent(jLabel8)))
-                        .addGap(0, 333, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jButton1)
+                        .addGap(140, 140, 140)
+                        .addComponent(btListar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(141, 141, 141)
-                .addComponent(jButton1)
-                .addGap(140, 140, 140)
-                .addComponent(btListar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +244,9 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(btListar))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,7 +261,8 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,6 +278,7 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
         lblSalarioLiquido.setText(String.valueOf(fpm.getSalarioLiquido()));
         FolhaPagamentoDB fpdb = new FolhaPagamentoDB();
         fpdb.cadastrarFolha(fpm);
+        listatudo();
         //FuncionarioDB fdb = new FuncionarioDB();
         //fdb.cadastrarFuncionario(txtNome.getText(), "emailtest", "teste");
         //fdb.listarTodosOsFuncionarios();
@@ -237,8 +290,11 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
         
         FolhaPagamentoDB fpdb = new FolhaPagamentoDB();
         ArrayList<FolhaPagamentoModel> fpl = fpdb.listarFolhaPagamento();
-
+        int i = 0;
+       DefaultTableModel model = (DefaultTableModel) jtblFolha.getModel();
+       model.setNumRows(0);
         for(FolhaPagamentoModel fpm: fpl){
+            /*
             JOptionPane.showMessageDialog(rootPane, 
                     "Folha de pagamento\n"+ 
                             "________________________\n"+ 
@@ -250,8 +306,20 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
                             +"\nIRRF: " + String.valueOf(fpm.getIrrf())
                             +"\n________________________\n"
                             +"\nSalario Liquido: " +String.valueOf(fpm.getSalarioLiquido())
+                    
                     );
+           */
+            model.addRow(new Object[]{
+            String.valueOf(fpm.getSalarioBruto()),
+                    String.valueOf(fpm.getInss()),
+                    String.valueOf(fpm.getIrrf()),
+                    String.valueOf(fpm.getSalarioLiquido())
+            });
+            
         }
+        
+        
+        
     }//GEN-LAST:event_btListarActionPerformed
 
     /**
@@ -301,9 +369,11 @@ public class FolhaPagamentoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTable jtblFolha;
     private javax.swing.JLabel lblInss;
     private javax.swing.JLabel lblIrrf;
     private javax.swing.JLabel lblSalarioLiquido;

@@ -6,6 +6,7 @@
 package principa;
 
 import Model.FuncionarioDB;
+import Model.LivroDB;
 
 
 
@@ -20,12 +21,19 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        /*FuncionarioDB fdb = new FuncionarioDB();
+        LivroDB ldb = new LivroDB();
+        System.out.println(ldb.cadastrarLivro("1", "1", "1", "1", "1", "1"));
+        //ldb.listarLivro();
+        System.out.println("Buscar o autor 1");
+        ldb.buscarAutor("1");
+        System.out.println("Remover o livro 1");
+        System.out.println(ldb.removerLivro("1"));
+        /*
+        FuncionarioDB fdb = new FuncionarioDB();
         fdb.cadastrarFuncionario("Thiago", "Thiago@gmail.com", "123456789");
         fdb.listarTodosOsFuncionarios();
         fdb.buscarFuncionarioPorNome("Thiago");
-        
+        /*
         try {
             Path arquivo = Paths.get("arquivo.txt");
             BufferedWriter bw = null;
